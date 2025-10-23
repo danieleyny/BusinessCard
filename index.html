@@ -8,210 +8,227 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJ8WlRzM0n8E4qI9rV1q/S+6R8H/s/E/6bEwD7CgPq0+w/w+J9r1K5B5Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
-    /* 1. COLOR PALETTE & VARIABLES (Bright Theme with Lime Pop) */
-    :root {
-      --bg-light: #F7F9FC;
-      --paper-light: #FFFFFF;
-      --ink-dark: #1F2837;
-      --muted-dark: #5F6B7B;
-      --accent-lime: #9ED60F;
-      --accent-ink: #1F2837;
-      --line-light: #E8EEF6;
+    :root{
+      --bg-light:#F7F9FC; --paper-light:#FFFFFF; --ink-dark:#1F2837;
+      --muted-dark:#5F6B7B; --accent-lime:#9ED60F; --line-light:#E8EEF6;
+    }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{
+      margin:0;font-family:'Inter',system-ui,sans-serif;color:var(--ink-dark);
+      display:flex;align-items:center;justify-content:center;padding:16px;background:var(--bg-light);
+      background:
+        radial-gradient(1400px 700px at 70% -10%, rgba(158,214,15,.1), transparent 60%),
+        radial-gradient(900px 600px at -10% 0%, rgba(52,152,219,.06), transparent 60%),
+        repeating-conic-gradient(from 0deg, var(--line-light) 0% .005%, transparent .005% 1%),
+        var(--bg-light);
+      background-size:100% 100%,100% 100%,80px 80px;
     }
 
-    /* 2. BASE STYLES & LAYOUT */
-    * { box-sizing:border-box; }
-    html, body { height:100%; }
-    body {
-      margin:0;
-      font-family: 'Inter', system-ui, sans-serif;
-      color:var(--ink-dark);
-      background: var(--bg-light);
-      display:flex; 
-      align-items:center;
-      justify-content:center;
-      padding:16px;
-    }
-    
-    /* Global Grid Background Design (for elegance and connection) */
-    body {
-        background: 
-            radial-gradient(1400px 700px at 70% -10%, rgba(158,214,15,0.1), transparent 60%),
-            radial-gradient(900px 600px at -10% 0%, rgba(52,152,219,0.06), transparent 60%),
-            repeating-conic-gradient(from 0deg, 
-                var(--line-light) 0% 0.005%, 
-                transparent 0.005% 1%),
-            var(--bg-light);
-        background-size: 100% 100%, 100% 100%, 80px 80px; 
-    }
-
-    .card {
-      width:min(480px, 100%);
+    .card{
+      width:min(480px,100%);
       background:var(--paper-light);
       border:1px solid var(--line-light);
-      border-radius:28px; 
-      padding:40px 28px 28px; 
-      box-shadow:0 15px 40px rgba(13, 33, 57, 0.15); 
+      border-radius:28px;
+      padding:40px 28px 28px;
+      box-shadow:0 15px 40px rgba(13,33,57,.15);
       text-align:center;
-      transition: transform 0.3s ease;
-    }
-    
-    /* 3. BRANDING */
-    .brand { 
-        display:flex; 
-        align-items:center; 
-        justify-content:center; 
-        gap:12px;
-        margin-bottom: 30px; 
-        padding-bottom: 15px;
-        border-bottom: 1px solid var(--line-light);
-        color: var(--muted-dark);
-    }
-    .brand img.logo { height:26px; width:auto; filter: none; }
-    .brand h1 { font-size:15px; font-weight:600; letter-spacing:0.5px; margin:0; text-transform: uppercase; color: var(--muted-dark); }
-
-    /* 4. HERO/PROFILE */
-    .avatar { 
-        width:140px; 
-        height:140px; 
-        border-radius:50%; 
-        background:var(--bg-light); 
-        /* Vivid pulsing ring effect */
-        box-shadow: 0 0 0 5px var(--accent-lime), 0 0 0 10px rgba(158, 214, 15, 0.3); 
-        overflow:hidden; 
-        margin: 0 auto;
-        animation: vividPulse 3s ease-in-out infinite;
-    }
-    .avatar img { width:100%; height:100%; object-fit:cover; display:block; }
-    
-    .info { margin-top:30px; }
-    .name { font-size:32px; font-weight:800; letter-spacing:.5px; margin: 0; color: var(--ink-dark); }
-    .role { color:var(--accent-lime); font-size:18px; margin-top:6px; font-weight: 700; text-transform: uppercase; }
-    .org { color:var(--muted-dark); font-size:16px; margin-top:4px; font-weight: 500; }
-
-    /* 5. THE CONNECTOR (ACTIONS) */
-    .actions { 
-        display:flex; 
-        flex-direction: column; 
-        gap:16px; 
-        margin:35px 0 25px; 
-        padding: 0 10px;
-    }
-    .btn {
-      appearance:none; -webkit-appearance:none;
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      width:100%; padding:17px 14px; border-radius:12px;
-      font-weight:700; font-size:17px; 
-      text-decoration:none; 
-      transition: all .2s ease;
-    }
-    .btn i { font-size: 19px; }
-
-    /* Primary Action: Save Contact */
-    .btn.primary { 
-        background:var(--accent-lime); 
-        color:var(--accent-ink); 
-        border:1px solid var(--accent-lime);
-        box-shadow:0 8px 18px rgba(158, 214, 15, 0.4);
-    }
-    .btn.primary:hover { background: #b0e531; }
-
-    /* Secondary Actions: LinkedIn and Email (Outline Style in a grid) */
-    .contact-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-        margin-top: 10px;
-    }
-    .btn.secondary {
-        background: var(--paper-light); 
-        border: 1px solid var(--line-light); 
-        color: var(--ink-dark);
-        box-shadow: 0 4px 10px rgba(13, 33, 57, 0.05);
-        padding: 15px 10px;
-        font-size: 16px;
-    }
-    .btn.secondary:hover { 
-        border-color: var(--accent-lime); 
-        color: var(--accent-lime);
-        background: #fcfcfc;
-    }
-    .btn.linkedin:hover i {
-        color: #0077B5;
     }
 
-    /* 6. ANIMATIONS */
-    @keyframes vividPulse {
-      0%, 100% { box-shadow: 0 0 0 5px var(--accent-lime), 0 0 0 10px rgba(158, 214, 15, 0.3); }
-      50% { box-shadow: 0 0 0 5px var(--accent-lime), 0 0 0 18px rgba(158, 214, 15, 0.6); }
+    .brand{
+      display:flex;align-items:center;justify-content:center;gap:12px;
+      margin-bottom:30px;padding-bottom:15px;
+      border-bottom:1px solid var(--line-light);
+      color:var(--muted-dark);
     }
-    @keyframes slideInUp {
-        0% { opacity: 0; transform: translateY(30px); }
-        100% { opacity: 1; transform: translateY(0); }
-    }
-    .card > * { animation: slideInUp 0.8s ease-out both; }
-    .actions { animation-delay: 0.2s; }
+    .brand img.logo{height:26px}
+    .brand h1{font-size:15px;font-weight:600;letter-spacing:.5px;margin:0;text-transform:uppercase;color:var(--muted-dark)}
 
-    /* Footer */
-    .foot { 
-        margin-top:30px; 
-        text-align:center; 
-        font-size:12px; 
-        color:var(--muted-dark); 
+    .hero{position:relative;display:inline-block}
+    .avatar{
+      width:140px;height:140px;border-radius:50%;
+      background:var(--bg-light);
+      box-shadow:0 0 0 5px var(--accent-lime),0 0 0 10px rgba(158,214,15,.3);
+      overflow:hidden;margin:0 auto;
+      animation:vividPulse 3s ease-in-out infinite;
+      cursor:pointer;
     }
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* ---- CLICK HINT (arrow above text) ---- */
+ .click-hint{
+  position:absolute;
+  right:calc(100% + 12px);
+  top:38%;
+  transform:translateY(-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+  pointer-events:none;
+  animation:float 2s ease-in-out infinite;
+  white-space: nowrap;             /* NEW: keep "Click for bio" on one line */
+}
+    .hint-arrow{
+      width:80px;
+      height:50px;
+      color:#000;
+    }
+    .hint-arrow path{
+      stroke-dasharray:100;
+      stroke-dashoffset:100;
+      animation:draw 1s ease-out forwards .25s;
+    }
+    .hint-text{
+      font-size:15px;
+      font-family:"Times New Roman", Georgia, serif;
+      font-weight:500;
+      color:#111;
+      padding-right: 60px;
+    }
+
+    /* Responsive: move below avatar on small screens */
+    @media (max-width:520px){
+      .click-hint{
+        top:calc(100% + 8px);
+        transform:translate(-50%,0);
+      }
+      .hint-arrow{width:60px;height:40px; transform: rotate(-10deg); margin-right: -15px;}
+          .hint-text{
+      font-size:15px;
+      font-family:"Times New Roman", Georgia, serif;
+      font-weight:500;
+      color:#111;
+      margin-right: -40px;
+      margin-bottom: 130px;
+    }
+    }
+
+    @keyframes draw{to{stroke-dashoffset:0}}
+    @keyframes vividPulse{
+      0%,100%{box-shadow:0 0 0 5px var(--accent-lime),0 0 0 10px rgba(158,214,15,.3)}
+      50%{box-shadow:0 0 0 5px var(--accent-lime),0 0 0 18px rgba(158,214,15,.6)}
+    }
+    @keyframes float{
+      0%,100%{transform:translateY(-50%)}
+      50%{transform:translateY(calc(-50% - 3px))}
+    }
+
+    .info{margin-top:30px}
+    .name{font-size:32px;font-weight:800;margin:0}
+    .role{color:var(--accent-lime);font-size:18px;margin-top:6px;font-weight:700;text-transform:uppercase}
+    .org{color:var(--muted-dark);font-size:16px;margin-top:4px;font-weight:500}
+
+    .actions{display:flex;flex-direction:column;gap:16px;margin:35px 0 25px;padding:0 10px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:17px 14px;border-radius:12px;font-weight:700;font-size:17px;text-decoration:none;transition:all .2s}
+    .btn i{font-size:19px}
+    .btn.primary{background:var(--accent-lime);color:var(--ink-dark);border:1px solid var(--accent-lime);box-shadow:0 8px 18px rgba(158,214,15,.4)}
+    .btn.primary:hover{background:#b0e531}
+
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+    .btn.secondary{background:var(--paper-light);border:1px solid var(--line-light);color:var(--ink-dark);box-shadow:0 4px 10px rgba(13,33,57,.05);padding:15px 10px;font-size:16px}
+    .btn.secondary:hover{border-color:var(--accent-lime);color:var(--accent-lime)}
+    .foot{margin-top:30px;text-align:center;font-size:12px;color:var(--muted-dark)}
+
+    /* Bio */
+    .hidden{display:none!important}
+    #bio-content{padding:10px 0;margin-top:30px;line-height:1.6;color:var(--muted-dark);text-align:left}
+    #bio-content h2{font-size:24px;font-weight:800;color:var(--ink-dark);margin-bottom:15px;text-align:center}
+    .btn.back{width:auto;padding:14px 24px;margin:20px auto 0;background:var(--accent-lime);color:var(--ink-dark);border:1px solid var(--accent-lime);box-shadow:0 8px 18px rgba(158,214,15,.4)}
   </style>
 </head>
 <body>
-  <main class="card" role="main" aria-label="Digital business card for Sharon Eyny">
-    
-    <div class="brand" aria-label="Brand">
-        <img class="logo" src="./assets/img/logo_ono-removebg-preview.png" alt="Ono Academic College Logo">
-        <h1>Ono Academic College</h1>
+  <main class="card" role="main">
+    <div class="brand">
+      <img class="logo" src="./assets/img/logo_ono-removebg-preview.png" alt="Ono Academic College Logo">
+      <a href="https://www.ono.ac.il/eng/" style="text-decoration:none"><h1>Ono Academic College</h1></a>
     </div>
 
     <div class="hero">
-      <div class="avatar">
-        <img alt="Profile photo of Sharon Eyny" src="./assets/img/sharonprofilephoto-removebg-preview.png">
+      <div class="avatar" id="avatar-button">
+        <img src="./assets/img/PHOTO-2025-10-01-09-58-37.png" alt="Profile photo of Sharon Eyny">
+      </div>
+
+      <!-- Arrow above text -->
+      <div class="click-hint" id="click-hint">
+        <svg class="hint-arrow" viewBox="0 0 120 70" aria-hidden="true">
+          <defs>
+            <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8" fill="none" stroke="currentColor" stroke-width="2"/>
+            </marker>
+          </defs>
+          <!-- Nice upward swoop -->
+          <path pathLength="100"
+                d="M2,45 Q60,0 112,35"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                marker-end="url(#arrowhead)"/>
+        </svg>
+        <span class="hint-text">Click for bio</span>
       </div>
     </div>
 
-    
-    <section class="info">
-      <div class="name">Sharon Eyny</div>
-      <div class="role">Chief Executive Officer</div>
-      <div class="org">Ono International</div>
-      
-      <div class="actions">
-        <a class="btn primary" id="saveBtn"
-           href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3AEyny%3BSharon%3B%3B%3B%0AFN%3ASharon%20Eyny%0ATITLE%3AChief%20Executive%20Officer%0AORG%3AOno%20International%0AEMAIL%3BTYPE%3DINTERNET%2CPREF%3ASharon.ey%40ono.ac.il%0ATEL%3BTYPE%3DCELL%3A%2B16468730265%0AEND%3AVCARD"
-           download="Sharon_Eyny.vcf"
-           aria-label="Save contact to phone">
-           <i class="fas fa-address-book"></i> Save Contact
-        </a>
-      </div>
+    <div id="front-content">
+      <section class="info">
+        <div class="name">Sharon Eyny</div>
+        <div class="role">Chief Executive Officer</div>
+        <a href="https://www.ono.ac.il/eng/" style="text-decoration:none"><div class="org">Ono International</div></a>
 
-      <div class="contact-grid">
-        <a class="btn secondary linkedin" id="linkedinBtn" 
-           href="https://www.linkedin.com/in/sharon-eyny/" 
-           target="_blank" 
-           aria-label="Sharon Eyny LinkedIn Profile">
-            <i class="fab fa-linkedin-in"></i> LinkedIn
-        </a>
-        <a class="btn secondary" href="mailto:Sharon.ey@ono.ac.il" aria-label="Email Sharon Eyny">
-            <i class="fas fa-envelope"></i> Email
-        </a>
-      </div>
-      
-    </section>
+        <div class="actions">
+          <a class="btn primary" id="saveBtn"
+             href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AN%3AEyny%3BSharon%3B%3B%3B%0AFN%3ASharon%20Eyny%0ATITLE%3AChief%20Executive%20Officer%0AORG%3AOno%20International%0AEMAIL%3BTYPE%3DINTERNET%2CPREF%3ASharon.ey%40ono.ac.il%0ATEL%3BTYPE%3DCELL%3A%2B16468730265%0AEND%3AVCARD"
+             download="Sharon_Eyny.vcf">
+             <i class="fas fa-address-book"></i> Save Contact
+          </a>
+        </div>
 
-    <div class="foot">
-        <p style="font-size: 14px; margin: 0 0 10px 0; color: var(--muted-dark);">Leading Education. Connecting Worlds.</p>
+        <div class="contact-grid">
+          <a class="btn secondary linkedin" href="https://www.linkedin.com/in/sharon-eyny/" target="_blank">LinkedIn</a>
+          <a class="btn secondary" href="mailto:Sharon.ey@ono.ac.il">Email</a>
+        </div>
+      </section>
+
+      <div class="foot">
+        <p style="font-size:14px;margin:0 0 10px 0">Leading Education. Connecting Worlds.</p>
         &copy; 2025 Ono Academic College
+      </div>
     </div>
+
+    <section id="bio-content" class="hidden">
+      <h2>About Sharon</h2>
+      <p>Sharon Eyny is the CEO of Ono International Academic College (Ono Friends) leading Ono’s global growth and partnerships. With extensive experience in strategic partnerships, business development, and global media, she works to connect education, innovation, and community impact.</p>
+      <p>Sharon is passionate about making higher education more inclusive and globally connected and she brings creativity, vision, and passion to advancing Ono’s international mission.</p>
+      <a class="btn primary back" id="back-to-card-btn"><i class="fas fa-chevron-left"></i> Back to Card</a>
+    </section>
   </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const avatarButton = document.getElementById('avatar-button');
+      const backButton   = document.getElementById('back-to-card-btn');
+      const frontContent = document.getElementById('front-content');
+      const bioContent   = document.getElementById('bio-content');
+      const clickHint    = document.getElementById('click-hint');
+
+      const toggleView = () => {
+        const isFrontVisible = !frontContent.classList.contains('hidden');
+        if (isFrontVisible) {
+          frontContent.classList.add('hidden');
+          bioContent.classList.remove('hidden');
+          clickHint.style.display = 'none';
+        } else {
+          frontContent.classList.remove('hidden');
+          bioContent.classList.add('hidden');
+          clickHint.style.display = 'flex';
+        }
+      };
+
+      avatarButton.addEventListener('click', toggleView);
+      backButton?.addEventListener('click', toggleView);
+    });
+  </script>
 </body>
 </html>
